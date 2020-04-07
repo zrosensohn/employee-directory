@@ -1,9 +1,9 @@
 module.exports = {
 
-  ascSortFirstName: (arr) => {
+  ascSortName: (arr, sortKey) => {
     let sortedArr = arr.sort(function(a, b) {
-      var nameA = a.name.first.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.name.first.toUpperCase(); // ignore upper and lowercase
+      var nameA = a.name[sortKey].toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name[sortKey].toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
         return -1;
       }
@@ -15,10 +15,10 @@ module.exports = {
     });
     return sortedArr;
   },
-  descSortFirstName: (arr) => {
+  descSortName: (arr, sortKey) => {
     let sortedArr = arr.sort(function(a, b) {
-      var nameA = a.name.first.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.name.first.toUpperCase(); // ignore upper and lowercase
+      var nameA = a.name[sortKey].toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name[sortKey].toUpperCase(); // ignore upper and lowercase
       if (nameA > nameB) {
         return -1;
       }
@@ -30,35 +30,17 @@ module.exports = {
     });
     return sortedArr;
   },
-  ascSortLastName: (arr) => {
-    let sortedArr = arr.sort(function(a, b) {
-      var nameA = a.name.last.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.name.last.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
-    return sortedArr;
+  changeAscIcon: (sortEl) => {
+    sortEl.classList.remove('fa-sort-alpha-down');
+    sortEl.classList.add('fa-sort-alpha-up');
+    sortEl.removeAttribute('data-sort');
+    sortEl.setAttribute('data-sort', 'desc');
   },
-  descSortLastName: (arr) => {
-    let sortedArr = arr.sort(function(a, b) {
-      var nameA = a.name.last.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.name.last.toUpperCase(); // ignore upper and lowercase
-      if (nameA > nameB) {
-        return -1;
-      }
-      if (nameA < nameB) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
-    return sortedArr;
+  changeDescIcon: (sortEl) => {
+    sortEl.classList.remove('fa-sort-alpha-up');
+    sortEl.classList.add('fa-sort-alpha-down');  
+    sortEl.removeAttribute('data-sort');
+    sortEl.setAttribute('data-sort', 'asc');
   }
 
 }

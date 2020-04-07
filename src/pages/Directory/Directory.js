@@ -3,7 +3,7 @@ import './style.css';
 import API from '../../utils/API';
 import EmployeeList from '../../components/EmployeeList';
 import SearchForm from '../../components/SearchForm';
-import { ascSortFirstName, descSortFirstName, ascSortLastName, descSortLastName } from './sortingFunctions';
+import { ascSortName, descSortName, changeAscIcon, changeDescIcon } from './sortingFunctions';
 
 class Directory extends Component {
 
@@ -19,7 +19,7 @@ class Directory extends Component {
         if (res.error) {
           throw new Error(res.error);
         }
-        let results = ascSortFirstName(res.data.results);
+        let results = ascSortName(res.data.results, 'first');
         this.setState({ results: results, originalResults: results, error: ''});
       })
       .catch(err => {
@@ -29,11 +29,16 @@ class Directory extends Component {
 
   handleSortFirstName = (event) => {
     let sortedArr;
+    event.target.classList.remove('text-secondary');
+    document.getElementById('lastNameSort').classList.add('text-secondary');
 
-    if(event.target.dataset.sort === 'desc') {
-      sortedArr = descSortFirstName(this.state.results);
+
+    if(event.target.dataset.sort === 'asc') {
+      sortedArr = descSortName(this.state.results, 'first');
+      changeAscIcon(event.target);
     } else {
-      sortedArr = ascSortFirstName(this.state.results);
+      sortedArr = ascSortName(this.state.results, 'first');
+      changeDescIcon(event.target);
     }
 
     this.setState({ results: sortedArr});
@@ -41,11 +46,15 @@ class Directory extends Component {
 
   handleSortLastName = (event) => {
     let sortedArr;
+    event.target.classList.remove('text-secondary');
+    document.getElementById('firstNameSort').classList.add('text-secondary');
 
-    if(event.target.dataset.sort === 'desc') {
-      sortedArr = descSortLastName(this.state.results);
+    if(event.target.dataset.sort === 'asc') {
+      sortedArr = descSortName(this.state.results, 'last');
+      changeAscIcon(event.target);
     } else {
-      sortedArr = ascSortLastName(this.state.results);
+      sortedArr = ascSortName(this.state.results, 'last');
+      changeDescIcon(event.target);
     }
 
     this.setState({ results: sortedArr});
