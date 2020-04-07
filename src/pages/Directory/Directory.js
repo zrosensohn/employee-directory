@@ -31,8 +31,6 @@ class Directory extends Component {
     let sortedArr;
     event.target.classList.remove('text-secondary');
     document.getElementById('lastNameSort').classList.add('text-secondary');
-
-
     if(event.target.dataset.sort === 'asc') {
       sortedArr = descSortName(this.state.results, 'first');
       changeAscIcon(event.target);
@@ -40,7 +38,6 @@ class Directory extends Component {
       sortedArr = ascSortName(this.state.results, 'first');
       changeDescIcon(event.target);
     }
-
     this.setState({ results: sortedArr});
   }
 
@@ -48,7 +45,6 @@ class Directory extends Component {
     let sortedArr;
     event.target.classList.remove('text-secondary');
     document.getElementById('firstNameSort').classList.add('text-secondary');
-
     if(event.target.dataset.sort === 'asc') {
       sortedArr = descSortName(this.state.results, 'last');
       changeAscIcon(event.target);
@@ -56,13 +52,10 @@ class Directory extends Component {
       sortedArr = ascSortName(this.state.results, 'last');
       changeDescIcon(event.target);
     }
-
     this.setState({ results: sortedArr});
   }
 
   handleInputChange = (event) => {
-    console.log(event.target.value);
-
     if (event.target.value.length > 0) {
       let array = this.state.originalResults.filter(employee => {
         return employee.name.first.toUpperCase().includes(event.target.value.toUpperCase()) 
@@ -77,9 +70,7 @@ class Directory extends Component {
   render() {
     return (
       <div>
-        <SearchForm 
-        handleInputChange = {this.handleInputChange} 
-        />
+        <SearchForm handleInputChange = {this.handleInputChange} />
         <EmployeeList 
         results = {this.state.results}
         handleSortFirstName = {this.handleSortFirstName}
