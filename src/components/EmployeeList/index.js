@@ -7,8 +7,24 @@ function EmployeeList(props) {
       <thead>
         <tr>
           <th className="empPhoto" scope="col">Picture</th>
-          <th className="empFName" scope="col"><span onClick={props.handleSortFirstName}>^ </span>First Name</th>
-          <th className="empLName" scope="col">Last Name</th>
+          <th className="empFName" scope="col">
+            <i 
+              id="firstNameSort"
+              data-sort="asc"
+              onClick={props.handleSortFirstName}
+              className="fas fa-sort-alpha-down mr-2">
+            </i>
+            First Name
+          </th>
+          <th className="empLName" scope="col">
+            <i 
+              id="lastNameSort"
+              data-sort="asc"
+              onClick={props.handleSortLastName}
+              className="fas fa-sort-alpha-down text-secondary mr-2">
+            </i>
+            Last Name
+          </th>
           <th className="empEmail" scope="col">Email</th>
           <th className="empPhone" scope="col">Phone</th>
           <th className="empCell" scope="col">Cell</th>
