@@ -16,30 +16,23 @@ class Directory extends Component {
   componentDidMount() {
     API.getEmployees()
       .then(res => {
-        console.log(res)
         if (res.error) {
           throw new Error(res.error);
         }
         let results = ascSortFirstName(res.data.results);
         this.setState({ results: results, originalResults: results, error: ''});
-        console.log(this.state);
       })
       .catch(err => {
-        console.log(err)
         this.setState({ error: err.error});
-        console.log(this.state);
       });
   }
 
   handleSortFirstName = (event) => {
-    console.log(event.target);
     let sortedArr;
 
     if(event.target.dataset.sort === 'desc') {
-      console.log('Descending');
       sortedArr = descSortFirstName(this.state.results);
     } else {
-      console.log("Ascending");
       sortedArr = ascSortFirstName(this.state.results);
     }
 
@@ -47,14 +40,11 @@ class Directory extends Component {
   }
 
   handleSortLastName = (event) => {
-    console.log(event.target);
     let sortedArr;
 
     if(event.target.dataset.sort === 'desc') {
-      console.log('Descending');
       sortedArr = descSortLastName(this.state.results);
     } else {
-      console.log("Ascending");
       sortedArr = ascSortLastName(this.state.results);
     }
 
@@ -78,7 +68,9 @@ class Directory extends Component {
   render() {
     return (
       <div>
-        <SearchForm handleInputChange = {this.handleInputChange} />
+        <SearchForm 
+        handleInputChange = {this.handleInputChange} 
+        />
         <EmployeeList 
         results = {this.state.results}
         handleSortFirstName = {this.handleSortFirstName}

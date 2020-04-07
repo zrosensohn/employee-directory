@@ -1,0 +1,35 @@
+#firstNameSort, #lastNameSort {
+  cursor: pointer;
+}
+
+.employeeDirectoryTable td {
+  vertical-align: middle;
+}
+
+.employeeDirectoryTable .empPhoto {
+  width: 5%;
+}
+
+.employeeDirectoryTable .empFName {
+  width: 15%;
+}
+
+.employeeDirectoryTable .empLName {
+  width: 15%;
+}
+
+.employeeDirectoryTable .empEmail {
+  width: 10%;
+}
+
+.employeeDirectoryTable .empPhone {
+  width: 15%;
+}
+
+.employeeDirectoryTable .empCell {
+  width: 15%;
+}
+
+.employeeDirectoryTable .empAddress {
+  width: 25%;
+}
